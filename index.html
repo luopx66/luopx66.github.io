@@ -47,16 +47,6 @@
             /* 添加圆角边框 */
         }
     </style>
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRRY41H1B1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-QRRY41H1B1');
-    </script>
 </head>
 
 <body>
@@ -384,46 +374,6 @@
     <footer>
         <p>&copy; 2024 Luopx`s Notes. All rights reserved.</p>
     </footer>
-
-    <!-- 访问次数 -->
-    <p id="visit-count">访问次数：加载中...</p>
-
-    <!-- 引入 Google Analytics API 客户端库 -->
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script>
-        // 使用 Google Analytics Reporting API v4
-        function getVisitCount(apiKey, viewId, pagePath) {
-            gapi.client.init({
-                'apiKey': apiKey,
-            }).then(function () {
-                return gapi.client.request({
-                    'path': `/v4/reports:batchGet`,
-                    'root': 'https://analyticsreporting.googleapis.com/',
-                    'method': 'POST',
-                    'body': {
-                        'reportRequests': [
-                            {
-                                'viewId': viewId,
-                                'dateRanges': [{ 'startDate': '30daysAgo', 'endDate': 'today' }],
-                                'metrics': [{ 'expression': 'ga:pageviews' }],
-                                'dimensions': [{ 'name': 'ga:pagePath' }],
-                                'filtersExpression': `ga:pagePath==${pagePath}`,
-                            }
-                        ]
-                    }
-                });
-            }).then(function (response) {
-                const report = response.result.reports[0];
-                const visitCount = report.data.totals[0].values[0];
-                document.getElementById('visit-count').innerText = `访问次数：${visitCount}`;
-            });
-        }
-
-        // 加载 Google Analytics API 客户端库
-        gapi.load('client', function () {
-            getVisitCount('AIzaSyAGC3UupIHlqaeSRpbmVt984mCMxzJYmRM', '6523798519', '/');
-        });
-    </script>
 
 </body>
 
